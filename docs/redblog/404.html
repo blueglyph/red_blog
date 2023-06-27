@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <meta name="theme-color" content="#000000">
+    <title>Red's Lost</title>
+    <style>
+        body {
+            background-color: black;
+            color: red;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        div.lost {
+            display: inline;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            width: 800px;
+            height: 80px;
+            padding: 20px;
+            border: 5px solid red;
+        }
+
+        div.center {
+            width: 100%;
+            text-align: center;
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="lost">
+        <div class="center">
+            Software Failure. Press left mouse button to continue.<br>
+            Guru Meditation &amp;00000404.00001057
+        </div>
+    </div>
+    <script>
+        document.addEventListener('click', function (evt) { window.location = "/" });
+    </script>
+</body>
+
+</html>

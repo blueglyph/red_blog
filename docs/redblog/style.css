@@ -1,0 +1,516 @@
+/* -------------------- general -------------------- */
+
+body {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  font-family: 'Anuphan', sans-serif;
+  line-height: 1.5;
+  font-size: 16px;
+  overflow-y: scroll;
+}
+
+.title {
+  font-size: 48px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.subtitle {
+  font-size: 20px;
+  font-style: italic;
+  font-weight: bold;
+  text-align: center;
+}
+
+.post-title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+div.post-summary {
+  padding: 5px 0 5px 10px;
+}
+
+h3 {
+  font-style: italic;
+}
+
+blockquote {
+  background: transparent;
+  border-left: 3px solid ;
+  margin: 1.5em 0px;
+  padding: 0.1em 8px 0.1em 16px;
+  quotes: "\201C""\201D""\2018""\2019";
+}
+
+blockquote:before {
+  float: left;
+  color: #25b2c7;
+  content: open-quote;
+  font-family: serif;
+  font-size: 4em;
+  line-height: 0.1em;
+  margin-right: 0.25em;
+  vertical-align: -0.4em;
+  line-height: 1;
+  height: 0.4em;
+}
+
+blockquote:after {
+  color: transparent;
+  content: close-quote;
+  font-size: 0rem;
+  display: inherit;
+}
+
+.quote-author {
+  font-family: Times, serif;
+  font-size: 18px;
+  font-style: italic;
+  text-align: right;
+}
+
+div.note {
+  margin: 1em 0px 1em 2em;
+}
+
+div.note div.header {
+  font-style: italic;
+  padding: 2px 0px 2px 1em;
+}
+
+div.note div.body {
+  padding: 1px 5px 1px 1em;
+}
+
+/* codeblock */
+code {
+  font-family: 'Inconsolata';
+  font-size: 15px;
+  line-height: 1.2;
+}
+
+/* in-text code */
+:not(pre)>code {
+  font-family: 'Inconsolata';
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+footer {  
+  text-align: center;
+}
+
+.copyright {
+  font-size: 14px;
+  font-style: italic;
+}
+
+.zola {
+  font-size: 12px;
+  font-style: italic;
+}
+
+/* -------------------- code -------------------- */
+
+pre {
+  padding: 5px;
+  overflow: auto;
+  /* fix for line height when no line numbering */
+  font-size: 1px;
+  line-height: 1.2;
+}
+
+pre table td {
+  padding: 0;
+  line-height: 1.2;
+}
+
+pre table td:nth-child(1) {
+  /* adds gap between line numbering and code */
+  padding: 0 10px 0 0;
+}
+
+pre table td:nth-of-type(1) {
+  user-select: none;
+}
+
+pre mark {
+  display: block;
+}
+
+mark {
+  color: inherit;
+}
+
+pre table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* -------------------- layout -------------------- */
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+.top-content {
+  margin: 0 0 16px 0;
+}
+
+.title {
+  margin: 30px 0 30px 0;
+}
+
+.subtitle {
+  padding: 0 0 32px 0;
+  border-bottom: 1px solid;
+  margin: 0 0 0 0;
+}
+
+div.nav-header, div.post-above {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: 32px;
+
+  /* PROBLEM */
+  /* padding: 4px;  */
+  padding-top: 4px;
+
+  max-width: 950px;
+  width: 100%;
+  margin: 1px auto 1px auto;
+}
+
+/* fix to center vertically */
+div.nav-header-inside {
+  text-align: center;
+  padding-left: 1em;
+  padding-right: 1em;
+  line-height: normal;
+  vertical-align: middle;
+}
+
+div.left-center-right {
+  display: flex; 
+  flex-direction: row;
+  position: relative;
+}
+
+div.pos-left {
+  position:absolute;
+  left: 0;
+}
+
+div.pos-center {
+  margin:auto;
+}
+
+div.pos-right {
+  position: absolute;
+  right: 0;
+}
+
+:root {
+  --main-width: 900px;
+}  
+
+div.post-above-inside {
+  line-height: normal;
+  vertical-align: middle;
+  max-width: var(--main-width);
+  padding-left: 1em;
+  padding-right: 1em;
+  margin: auto;
+}  
+
+div.post-main {
+  max-width: var(--main-width);
+  width: 100%;
+  padding-bottom: 1em;
+  margin-bottom: 1em;
+}
+
+div.index-content {
+  max-width: var(--main-width);
+  width: 100%;
+  margin: auto;
+}
+
+/* makes the left & right panel disappear when too narrow */
+@media screen and (min-width: 1280px) {
+  div.post-container {
+    display: flex;
+  }
+  
+  div.post-main {
+    margin: 0 0 0 0;
+  }
+
+  div.post-nav {
+    font-size: 12px;
+    width: 300px;
+    margin-right: auto;
+  }
+
+  div.post-toc {
+    font-size: 12px;
+    width: 300px;
+    margin-left: auto;
+  }
+
+  div.post-above {
+    display: none;
+  }
+
+  div.post-alt-nav {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  div.post-main {
+    margin: 0 auto;
+  }
+
+  div.post-toc, div.post-nav {
+    display: none;
+  }
+}
+
+.post-toc aside {
+  position: sticky;
+  top: 20px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  padding: 5px 10px 5px 10px;
+  border-radius: 5px;
+}
+
+.post-nav aside {
+  position: sticky;
+  top: 20px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  padding: 5px 10px 5px 10px;
+  border-radius: 5px;
+}
+
+.tag, .draft {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 2;
+  padding: 0 4px 2px 4px;
+  margin-left: 5px;
+  border-radius: 10px;
+  white-space: nowrap;
+}
+
+div.tag-list {
+  /* display: flex; */
+  padding-left: 2em;
+  padding-right: 2em;
+}
+
+ul.tag-list {
+  list-style-type: none;
+  padding-inline-start: 10px;
+}
+
+ul.post-items {
+  list-style-type: none;
+  padding-inline-start: 0px;
+}
+
+.post-item, .post-item-even, .post-item-odd {
+  padding: 10px;  
+  border-radius: 5px;
+  margin: 20px 10px 0px 10px;
+}
+
+.post-item-even {
+  margin: 20px 100px 0px 10px;
+}
+
+.post-item-odd {
+  margin: 20px 10px 0px 100px;
+}
+
+.post-nav li {
+  padding: 0 0 4px;
+}
+
+aside ul {
+  padding-inline-start: 20px;  
+}
+
+footer {
+  padding-top: 1em;
+  padding-bottom: 1em;
+  margin-top: auto;
+}
+
+sup.footnote-reference {
+  font-size: 12px;
+  font-style: italic;
+}
+
+.footnote-definition {
+  font-style: italic;
+  display: list-item;
+  list-style-type: none;
+  padding-left: 10px;
+}
+
+.footnote-definition p::before {
+  content: "\2014";
+  padding-left: 5px;
+  padding-right: 5px;
+  font-style: normal;
+}
+
+.footnote-definition p {
+  display: inline;
+}
+
+sup.footnote-definition-label {
+  color: #25b2c7;
+  /*font-size: unset;*/
+  vertical-align: middle;
+}
+
+/* -------------------- navigation -------------------- */
+
+a {
+  text-decoration: none;
+  position: relative;
+}
+
+a.disabled {
+  pointer-events: none;
+}
+
+/* -------------------- theme -------------------- */
+
+body {
+  /* light: */
+  /* background-color:#f7f9fb; */
+  /* color: #000000; */
+  /* dark: */
+  background-color: #1e1e1e;
+  color: #a9b7c6;
+}
+
+hr {
+  border-color: #406070;
+}
+
+.top-content {
+  background-color: #282c34;
+}
+
+
+.title, .post-title, .subtitle {
+  color: #ff9800;
+}
+
+div.post-summary {
+  border-left: 5px solid #406070;
+}
+
+h1 {
+  border-bottom: 1px solid #77b9df;
+}
+
+div.nav-header, div.post-above {
+  background-color: #282c34;
+  /* PROBLEM */
+  /* border: 1px solid #406070; */
+  border-radius: 8px;
+}
+
+blockquote {
+  border-color: #25b2c7;
+}
+
+div.note div.header {
+  color: #25b2c7;
+}
+
+div.note div.body {
+  border-left: 1px solid #25b2c7;
+}
+
+.quote-author {
+  color: #77b9df;
+}
+
+/* in-text code */
+:not(pre)>code {
+  /* light: */
+  /* color: #0040C0; */
+  /* dark: */
+  border: 1px solid #334953;
+  color: #25b2c7;
+}
+
+pre {
+  border: 1px solid #406070;
+}
+
+pre table td:nth-child(1) {
+  /* not possible to easily set the line number color in theme files */
+  color: #808080;
+}
+
+a {
+  color: #77b9df;
+}
+
+.disabled {
+  color: #707070;
+}
+
+.tag {
+  color: #ff9800;
+  background-color: #282c34;
+  border: 1px solid #25b2c7;
+}
+
+.draft {
+  font-weight: bold;
+  color: red;
+  background-color: black;
+  border: 1px solid #ff9800;  
+}
+
+aside {
+  background-color: #282c34;
+}
+
+.attention {
+  background-color: black;
+  font-weight: bold;
+  text-align: center;
+  color: red;
+  padding: 5px;
+  border: 1px solid #ff9800;
+}
+
+.comments hr, .post-alt-nav hr {
+  border-width: 1px 0 0 0;
+  border-color: #ff9800;
+  margin-top: 2em;
+}
+
+footer {
+  border-top: 1px solid #ff9800;
+  background-color: #282c34;
+}

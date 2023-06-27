@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>Red&#x27;s blog - macros</title>
+    <subtitle>A blog about Rust programming. Mostly.</subtitle>
+    <link href="https://www.unscript.net/redblog/tags/macros/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://www.unscript.net/redblog/"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2023-06-23T00:00:00+00:00</updated>
+    <id>https://www.unscript.net/redblog/tags/macros/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Escaping Macrophages</title>
+        <published>2023-06-23T00:00:00+00:00</published>
+        <updated>2023-06-23T00:00:00+00:00</updated>
+        <author>
+          <name>Unknown</name>
+        </author>
+        <link rel="alternate" href="https://www.unscript.net/redblog/posts/trait-impl-macros/" type="text/html"/>
+        <id>https://www.unscript.net/redblog/posts/trait-impl-macros/</id>
+        
+        <summary type="html">&lt;p&gt;Who doesn&#x27;t like special privileges? In Rust, the macros grant us this little extra authority over the language, enabling any developer to produce Rust source code from a domain-specific language or to modify the existing code by attaching an attribute.&lt;&#x2F;p&gt;
+&lt;p&gt;Macros are undoubtedly a great and powerful feature, but isn&#x27;t there a risk that we substitute them for new features that would have otherwise improved the language and its libraries? And aren&#x27;t they sometimes gnawing away at the clarity of the code?&lt;&#x2F;p&gt;
+&lt;p&gt;Let&#x27;s examine this issue in the context of language evolution, and see if we can make a few suggestions.&lt;&#x2F;p&gt;
+</summary>
+        
+    </entry>
+</feed>
