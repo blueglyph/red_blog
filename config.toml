@@ -1,0 +1,52 @@
+# The URL the site will be built for
+base_url = "https://www.unscript.net/blog_test/"
+
+title = "Red's blog"
+description = "A blog about Rust programming. Mostly."
+default-language = "en"
+output_dir = "docs"
+
+# Not using this feature right now because it generates too many errors in the validator.
+# Most browsers may be able to interpret the HTML anyway, since those errors are tolerated,
+# but it makes the validation much harder.
+# See https://github.com/getzola/zola/issues/2177
+#minify_html = true
+
+# Whether to automatically compile all Sass files in the sass directory
+compile_sass = true
+
+# Whether to build a search index to be used later on by a JavaScript library
+build_search_index = true
+
+
+taxonomies = [
+    { name = "tags", feed = true, paginate_by = 20 },
+]
+
+# Various slugification strategies, see below for details
+# Defaults to everything being a slug
+[slugify]
+paths = "on"
+taxonomies = "on"
+anchors = "on"
+
+[markdown]
+# Whether to do syntax highlighting
+# Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
+highlight_code = true
+
+extra_syntaxes_and_themes = ["highlight_themes"]
+
+# dark themes
+highlight_theme = "nyx-bold-mod"
+#highlight_theme = "css"
+
+# light themes
+# highlight_theme = "inspired-github"
+
+[extra]
+version = "1.0"
+utterances = true
+utterances_repo_test = "blueglyph/red_blog_draft"
+utterances_repo = "blueglyph/red_blog"
+utterances_theme = "github-dark-orange"

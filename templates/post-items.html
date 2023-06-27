@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="top-content">
+    {% block title %}{% endblock %}
+</div>
+
+{% if paginator %}
+{% set pages = paginator.pages %}
+{% else %}
+{% set pages = section.pages %}
+{% endif %}
+
+{{ macros::nav_header(paginator=paginator, tags=true) }}
+
+<div class="index-content">
+    <ul class="post-items">
+        {% for page in pages %}
+        <li>
+            <div {% if loop.index is even %}class="post-item-even" {% else %}class="post-item-odd" {% endif %}>
+                <p>
+                    <a class="post-title" href="{{ page.permalink | safe }}">{{ page.title }}</a>
+                    {% if page.draft %}
+                        <span class="draft">Draft</span>
+                    {% endif %}
+              
+                </p>
+                <p>
+                    {{ page.date | date(format='%e %B %Y')}} 
+                    {% if page.updated %}
+                    &nbsp; &mdash; &nbsp; updated {{ page.updated | date(format='%e %B %Y') }}
+                    {% endif %}
+                    &nbsp; &mdash; &nbsp;
+                    <span class="icon-text has-text-grey">
+                        <span>{{ page.reading_time }} min,</span>
+                        <span>{{ page.word_count }} words</span>
+                    </span>
+                </p>
+                <p>{{ macros::list_tags(tags=page.taxonomies.tags, ul=false) }}</p>
+                {% if page.summary %}
+                <div class="post-summary">
+                    {{ page.summary | safe }}
+                </div>
+                {% endif %}
+                <p><a href="{{ page.permalink | safe }}">Read more...</a></p>
+            </div>
+            {% if not loop.last %}
+            <div class="post-item">
+                <hr>
+            </div>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

@@ -1,0 +1,76 @@
+{% macro list_tags(tags, ul=true) %}
+{% if ul %}
+<ul class="tag-list">
+{% endif %}
+    {% for tag in tags | sort %}
+    {% if ul %}
+    <li>
+    {% endif %}
+        <a href="{{ get_taxonomy_url(kind='tags', name=tag) }}"><span class="tag">{{tag}}</span> </a>
+    {% if ul %}
+    </li>
+    {% endif %}
+    {% endfor %}
+{% if ul %}
+</ul>
+{% endif %}
+{% endmacro %}
+
+{% macro show_tag(tag) %}
+<a href="{{ get_taxonomy_url(kind='tags', name=tag.name) }}">
+    <span class="tag">{{tag.name}}</span><sup>{{ tag.pages | length }}</sup>
+</a>
+{% endmacro %}
+
+{% macro nav_header(paginator, tags) %}
+{% set back = current_path != '/' and not current_path is starting_with("/page/") %}
+<div class="nav-header">
+    <div class="nav-header-inside">
+        <div class="left-center-right">
+            <div class="pos-left">
+                {% if back %}
+                    <a href="{{ get_url(path='/') }}">Index</a>
+                    {% if paginator %}
+                        &nbsp; │ &nbsp;
+                    {% endif %}
+                {% endif %}
+                {% if paginator %}
+                    Pages:
+                    {% if paginator.previous or paginator.next %}
+                        <a {% if not paginator.previous %}class="disabled"{% endif %} href='{{ paginator.previous | safe }}'>&lt;</a>
+                        {% for pager in range(start=1, end=paginator.number_pagers+1) %}
+                            {% if pager == 1 %}
+                                {% set prev = paginator.base_url ~ pager | trim_end_matches(pat="/page/1") %}
+                            {% else %}
+                                {% set prev = paginator.base_url ~ pager %}
+                            {% endif %}
+                            <a {% if paginator.current_index==pager %}class="disabled"{% endif %} href='{{ prev | safe }}'>
+                                {{pager}}
+                            </a>
+                        {% endfor %}
+                        <a {% if not paginator.next %}class="disabled"{% endif %} href='{{ paginator.next | safe }}'>&gt;</a>
+                    {% else %}
+                        <a class="disabled" href='{{ current_url | safe }}'>1</a>
+                    {% endif %}
+                {% endif %}
+            </div>
+            {% if paginator %}
+                <div class="pos-center">
+                {{ paginator.total_pages }} post{{ paginator.total_pages | pluralize }}
+                </div>
+            {% endif %}
+            <div class="pos-right">
+            {% if back %}
+                <a href="javascript:history.back()">Back</a>
+                {% if tags %}
+                    &nbsp; │ &nbsp;
+                {% endif %}
+            {% endif %}
+            {% if tags %}
+                <a href="{{ get_url(path='/tags/') }}">Tags</a>
+            {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endmacro %}

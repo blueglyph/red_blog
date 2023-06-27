@@ -1,0 +1,31 @@
+{% import 'macros.html' as macros %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <meta name="theme-color" content="#282c34">
+
+    <title>Red's Blog</title>
+    <link rel="icon" type="image/x-icon" href="{{ get_url(path='favicon.ico') }}">
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anuphan&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata&display=swap" rel="stylesheet">
+
+    <!-- style -->
+    <link rel="stylesheet" href="{{ get_url(path='style.css') }}">
+</head>
+
+<body>
+    {% block content %} {% endblock %}
+    <footer>
+        <span class="copyright">Copyright 2023 by Redglyph</span><br>
+        <span class="zola">Blog v{{ config.extra.version }}. Made with <a href="https://www.getzola.org/">Zola</a></span>
+    </footer>
+</body>
+
+</html>

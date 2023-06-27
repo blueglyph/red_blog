@@ -1,0 +1,164 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="top-content">
+  <a href="{{ page.permalink | safe }}">
+    <div class="title">
+      {{ page.title }}
+    </div>
+  </a>
+  <div class="subtitle">
+    {{ page.date | date(format='%e %B %Y') }}
+    {% if page.updated %}
+    <span style="font-weight:normal">&mdash; updated {{ page.updated | date(format='%e %B %Y') }}</span>
+    {% endif %}
+    {% if page.draft %}
+      <span class="draft">Draft</span>
+    {% endif %}
+  </div>
+</div>
+
+<div class="post-above">
+  <div class="post-above-inside">
+    <div style="text-align: center;">
+      <span style="float:left">
+        {% if page.lower %}
+        <a href='{{ page.lower.permalink | safe }}'>newer</a>
+        {% else %}
+        <a class="disabled" href=''>newer</a>
+        {% endif %}
+      </span>
+      <a href="{{ get_url(path='/') }}">index</a>
+      <span style="float:right">
+        {% if page.higher %}
+        <a href='{{ page.higher.permalink | safe }}'>older</a>
+        {% else %}
+        <a class="disabled" href=''>older</a>
+        {% endif %}
+      </span>
+    </div>
+  </div>
+</div>
+
+<div class="post-container">
+
+  <!-- TOC -->
+
+  <div class="post-toc">
+    <aside>
+      <div class="left-center-right">
+        <div class="pos-left">
+          {% if page.lower %}
+          <a href='{{ page.lower.permalink | safe }}'>newer</a>
+          {% else %}
+          <a class="disabled" href=''>newer</a>
+          {% endif %}
+        </div>
+        <div class="pos-center">
+          <a href="{{ get_url(path='/') }}">index</a>
+        </div>
+        <div class="pos-right">
+          {% if page.higher %}
+          <a href='{{ page.higher.permalink | safe }}'>older</a>
+          {% else %}
+          <a class="disabled" href=''>older</a>
+          {% endif %}
+        </div>
+      </div>
+      <hr>
+      <a href="#top">{{ page.title }}</a>
+      {% if page.toc %}
+      <ul>
+        {% for h1 in page.toc %}
+        <li>
+          <a href="{{ h1.permalink | safe }}">{{ h1.title }}</a>
+          {% if h1.children %}
+          <ul>
+            {% for h2 in h1.children %}
+            <li>
+              <a href="{{ h2.permalink | safe }}">{{ h2.title }}</a>
+            </li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+        </li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </aside>
+  </div>
+
+  <!-- MAIN -->
+
+  <div class="post-main">
+    <div class="post-content">
+      <div class="post-alt-nav">
+        <p>Content: {{ page.reading_time }} min, {{ page.word_count }} words.</p>
+        {% if page.taxonomies.tags %}
+          <a href="{{ get_url(path='/tags') }}">Tags</a>:
+          {{ macros::list_tags(tags=page.taxonomies.tags, ul=false) }}
+        {% endif %}
+        <hr>
+      </div>
+      {{ page.content | safe }}
+      <script src="{{ get_url(path='scripts.js') }}"></script>
+      <!-- https://utteranc.es/ -->
+      {% if config.extra.utterances %}
+        <div class="comments">
+          <hr>
+          {% if page.extra.no_comment %}
+            <i>Comments are disabled for this post.</i>
+          {% else %}
+            {% if config.mode == "build" %}
+              {% set repo = config.extra.utterances_repo %}
+            {% else %}
+              <div class="attention">Comments are in the test repository.</div>
+              {% set repo = config.extra.utterances_repo_test %}
+            {% endif %}
+            <script src="https://utteranc.es/client.js"
+              repo="{{ repo | safe }}"
+              issue-term="{{ page.date ~ '-' ~ page.title | slugify }}"
+              theme="{{ config.extra.utterances_theme }}"
+              crossorigin="anonymous"
+              async>
+            </script>
+          {% endif %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- NAV -->
+
+  <div class="post-nav">
+    <aside>
+      <div class="left-center-right">
+        <div class="pos-left">Published on:</div>
+        <div class="pos-center">&nbsp;</div>
+        <div class="pos-right">{{ page.date | date(format='%e %B %Y') }}</div>
+      </div>
+      {% if page.updated %}
+      <div class="left-center-right">
+        <div class="pos-left">Last updated on:</div>
+        <div class="pos-center">&nbsp;</div>
+        <div class="pos-right">{{ page.updated | date(format='%e %B %Y') }}</div>
+      </div>
+      {% endif %}
+      <div class="left-center-right">
+        <div class="pos-left">Content:</div>
+        <div class="pos-center">&nbsp;</div>
+        <div class="pos-right">{{ page.reading_time }} min, {{ page.word_count }} words</div>
+      </div>
+    <hr>
+    <a href="{{ get_url(path='/tags') }}">Tags</a>:
+    {% if page.taxonomies.tags %}
+      {{ macros::list_tags(tags=page.taxonomies.tags, ul=false) }}
+    {% else %}
+      (none)
+    {% endif %}     
+    </aside>
+  </div>
+
+</div>
+{% endblock content %}
