@@ -116,6 +116,9 @@
               <div class="attention">Comments are in the test repository.</div>
               {% set repo = config.extra.utterances_repo_test %}
             {% endif %}
+            {% if page.extra.issue %}
+            <p class="note">Note: You can comment below using utteranc.es (requires your authorization the first time), or directly on <a href="https://github.com/{{repo}}/issues/{{page.extra.issue}}">GitHub</a>.</p>
+            {% endif %}
             <script src="https://utteranc.es/client.js"
               repo="{{ repo | safe }}"
               issue-term="{{ page.date ~ '-' ~ page.title | slugify }}"

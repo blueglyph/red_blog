@@ -2,6 +2,8 @@
 title = "Escaping Macrophages"
 [taxonomies]
 tags = ["rust", "macros", "language"]
+[extra]
+issue = 3
 +++
 
 Who doesn't like special privileges? In Rust, the macros grant us this little extra authority over the language, enabling any developer to produce Rust source code from a domain-specific language or to modify the existing code by attaching an attribute.  

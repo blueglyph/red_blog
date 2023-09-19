@@ -18,6 +18,8 @@ compile_sass = true
 # Whether to build a search index to be used later on by a JavaScript library
 build_search_index = true
 
+# Don't copy source images (*.drawio are converted to *.svg)
+ignored_content = ["*.drawio"]
 
 taxonomies = [
     { name = "tags", feed = true, paginate_by = 20 },
@@ -45,7 +47,7 @@ highlight_theme = "nyx-bold-mod"
 # highlight_theme = "inspired-github"
 
 [extra]
-version = "1.0"
+version = "1.1"
 utterances = true
 utterances_repo_test = "blueglyph/red_blog_draft"
 utterances_repo = "blueglyph/red_blog"
