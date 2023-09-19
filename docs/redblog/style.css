@@ -29,6 +29,10 @@ body {
   font-weight: bold;
 }
 
+.note {
+  font-style: italic;
+}
+
 div.post-summary {
   padding: 5px 0 5px 10px;
 }
@@ -416,8 +420,7 @@ hr {
   background-color: #282c34;
 }
 
-
-.title, .post-title, .subtitle {
+.title, .post-title, .subtitle, .note {
   color: #ff9800;
 }
 
